@@ -20,4 +20,15 @@ namespace GLUTCallbacks
 			glInstance->Display();
 		}
 	}
+
+	void Timer(int refreshMS) 
+	{
+		if (glInstance != nullptr)
+		{
+			int updateTime = glutGet(GLUT_ELAPSED_TIME);
+			glInstance->Update();
+			updateTime = glutGet(GLUT_ELAPSED_TIME) - updateTime;
+			glutTimerFunc(refreshMS - updateTime, GLUTCallbacks::Timer, refreshMS);
+		}
+	}
 }

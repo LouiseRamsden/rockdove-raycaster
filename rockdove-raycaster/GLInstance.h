@@ -9,6 +9,8 @@ public:
 	GLInstance(int argc, char* argv[]);
 
 	void Display();
+
+	void Update();
 	
 	~GLInstance(void);
 };

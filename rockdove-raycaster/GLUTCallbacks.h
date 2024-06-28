@@ -6,4 +6,6 @@ namespace GLUTCallbacks
 	void Init(GLInstance* gl);
 
 	void Display();
+
+	void Timer(int refreshMS);
 }
