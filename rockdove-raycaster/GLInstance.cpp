@@ -25,7 +25,7 @@ void GLInstance::Display()
 	for (int i = 0; i < (int)step; i++)
 	{
 		glBegin(GL_POLYGON);
-		glColor3f((sinf((float)a/100)+1.0f)/2.0f , 0.0f + ((float)i / step), 1.0f - ((float)i / step));
+		glColor3f((sinf((float)a/100.0f)+1.0f)/2.0f ,  1.0f - ((float)i / step), (cosf((float)a / 100) + 1.0f) / 2.0f);
 		glVertex2f(-1.0f + ((float)i / step) * 2.0f,1.0f );
 		glVertex2f(-1.0f + (((float)i + 1.0f) / step) * 2.0f, 1.0f);
 		glVertex2f(-1.0f + (((float)i + 1.0f) / step) * 2.0f, -1.0f);
