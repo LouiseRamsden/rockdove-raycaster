@@ -16,7 +16,18 @@
 class Raycaster
 {
 public:
+	Raycaster(int rows, int columns);
+
 	void OGLRender();
 
+	int GetRows();
+	void SetRows(int newRows);
+
+	int	GetColumns();
+	void SetColumns(int newColumns);
+
+private:
+	int m_rows;
+	int m_columns;
 };
 
