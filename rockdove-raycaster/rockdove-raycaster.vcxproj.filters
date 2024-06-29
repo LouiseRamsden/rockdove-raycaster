@@ -24,12 +24,18 @@
     <ClCompile Include="GLUTCallbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Raycaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GLUTCallbacks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Raycaster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
