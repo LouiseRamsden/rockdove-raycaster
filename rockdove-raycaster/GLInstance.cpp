@@ -5,6 +5,8 @@
 
 GLInstance::GLInstance(int argc, char* argv[]) 
 {
+	m_renderer = new Raycaster(320, 320);
+
 	GLUTCallbacks::Init(this);
 
 	glutInit(&argc, argv);
@@ -18,7 +20,7 @@ GLInstance::GLInstance(int argc, char* argv[])
 void GLInstance::Display() 
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-		renderer->OGLRender();
+		m_renderer->OGLRender();
 	glFlush();
 }
 

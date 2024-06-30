@@ -24,6 +24,6 @@ public:
 	~GLInstance(void);
 
 private:
-	Raycaster* renderer = new Raycaster();
+	Raycaster* m_renderer;
 };
 

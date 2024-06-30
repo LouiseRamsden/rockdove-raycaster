@@ -26,8 +26,16 @@ public:
 	int	GetColumns();
 	void SetColumns(int newColumns);
 
+	float GetHorizonOffset();
+	void SetHorizonOffset(float newHorizonOffset);
+
+	
+
 private:
 	int m_rows;
 	int m_columns;
+	float m_horizonOffset;
+
+	void NormalizeHorizonOffset();
 };
 
