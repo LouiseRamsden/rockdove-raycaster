@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="GLInstance.h" />
     <ClInclude Include="GLUTCallbacks.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="Raycaster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
