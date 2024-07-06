@@ -15,6 +15,14 @@
 #include "Maths.h"
 
 
+struct RayHitResult 
+{
+	Vector2D hitPosition;
+	float distance;
+	bool bHit;
+
+};
+
 class Raycaster
 {
 public:
@@ -22,10 +30,10 @@ public:
 
 	void OGLRender();
 
-	int GetRows();
+	uint16_t GetRows();
 	void SetRows(int newRows);
 
-	int	GetColumns();
+	uint16_t GetColumns();
 	void SetColumns(int newColumns);
 
 	float GetHorizonOffset();
@@ -37,15 +45,21 @@ public:
 	float GetRotation();
 	void SetRotation(float newRotation);
 
+	float GetFieldOfView();
+	void SetFieldOfView(float newFieldOfView);
+
 private:
-	int m_rows;
-	int m_columns;
+	uint16_t m_rows;
+	uint16_t m_columns;
 	float m_horizonOffset;
 	Vector2D m_viewportPosition;
 	float m_rotation;
+	float m_fieldOfView;
 
 
 	void NormalizeHorizonOffset();
-	void CastRay(Vector2D initialPosition, float rotation, float maxDistance);
+	RayHitResult CastRay(Vector2D initialPosition, float rotation, float maxDistance);
 };
+
+
 

@@ -3,6 +3,8 @@
 #include <math.h>
 #include <iostream>
 
+#include "Map.h"
+
 Raycaster::Raycaster(int rows, int columns) 
 {
 	SetRows(rows);
@@ -61,17 +63,28 @@ void Raycaster::NormalizeHorizonOffset()
 	float mult = (int)((m_horizonOffset + 1.0f) / step);
 	m_horizonOffset = (mult * step) - 1;
 }
-void Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance) 
+RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance)
 {
+	RayHitResult result;
+	result.bHit = false;
+	Vector2D directionVec;
+	directionVec.x = cosf(rotation);
+	directionVec.y = sinf(rotation);
+
+	for (int i = 1; i < 20; i++) 
+	{
+	}
+
+	return result;
 
 }
 
 //Getters and Setters hall of OOP
 //m_rows
-int Raycaster::GetRows() { return m_rows; }
+uint16_t Raycaster::GetRows() { return m_rows; }
 void Raycaster::SetRows(int newRows) { m_rows = newRows; }
 //m_columns
-int	Raycaster::GetColumns() { return m_columns; }
+uint16_t Raycaster::GetColumns() { return m_columns; }
 void Raycaster::SetColumns(int newColumns) { m_columns = newColumns; }
 //m_horizonOffset 
 float Raycaster::GetHorizonOffset() { return m_horizonOffset; }
@@ -99,3 +112,6 @@ void Raycaster::SetRotation(float newRotation)
 	}
 	m_rotation = newRotation; 
 }
+//m_fieldOfView
+float Raycaster::GetFieldOfView() { return m_fieldOfView; }
+void Raycaster::SetFieldOfView(float newFieldOfView) { m_fieldOfView = newFieldOfView; }

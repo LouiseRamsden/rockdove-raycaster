@@ -1,6 +1,6 @@
 #pragma once
 
-int g_map[10][10] =
+static const int g_map[10][10] =
 {
 	{1,1,1,1,1,1,1,1,1,1},
 	{1,0,0,0,0,0,0,0,0,1},
