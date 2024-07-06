@@ -3,12 +3,13 @@
 #include <math.h>
 #include <iostream>
 
-
 Raycaster::Raycaster(int rows, int columns) 
 {
 	SetRows(rows);
 	SetColumns(columns);
 	SetHorizonOffset(0.0f);
+	SetViewportPosition(Vector2D(5, 5));
+	SetRotation(0.0f);
 }
 
 //OpenGl 1.0 Rendering function
@@ -60,8 +61,12 @@ void Raycaster::NormalizeHorizonOffset()
 	float mult = (int)((m_horizonOffset + 1.0f) / step);
 	m_horizonOffset = (mult * step) - 1;
 }
+void Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance) 
+{
 
-//Getters and Setters
+}
+
+//Getters and Setters hall of OOP
 //m_rows
 int Raycaster::GetRows() { return m_rows; }
 void Raycaster::SetRows(int newRows) { m_rows = newRows; }
@@ -74,4 +79,23 @@ void Raycaster::SetHorizonOffset(float newHorizonOffset)
 { 
 	m_horizonOffset = newHorizonOffset; 
 	NormalizeHorizonOffset();
+}
+//m_viewportPosition
+Vector2D Raycaster::GetViewportPosition() { return m_viewportPosition; }
+void Raycaster::SetViewportPosition(Vector2D newViewportPosition) { m_viewportPosition = newViewportPosition; }
+//m_rotation
+float Raycaster::GetRotation() { return m_rotation; }
+void Raycaster::SetRotation(float newRotation) 
+{ 
+	if (newRotation > 360.0f) 
+	{
+		m_rotation = newRotation - 360.0f;
+		return;
+	}
+	if (newRotation < 360.0f) 
+	{
+		m_rotation = newRotation + 360.0f;
+		return;
+	}
+	m_rotation = newRotation; 
 }

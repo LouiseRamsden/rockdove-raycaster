@@ -12,6 +12,8 @@
 #include <gl/GLU.h>
 #include "GL/freeglut.h"
 
+#include "Maths.h"
+
 
 class Raycaster
 {
@@ -29,13 +31,21 @@ public:
 	float GetHorizonOffset();
 	void SetHorizonOffset(float newHorizonOffset);
 
-	
+	Vector2D GetViewportPosition();
+	void SetViewportPosition(Vector2D newViewportPosition);
+
+	float GetRotation();
+	void SetRotation(float newRotation);
 
 private:
 	int m_rows;
 	int m_columns;
 	float m_horizonOffset;
+	Vector2D m_viewportPosition;
+	float m_rotation;
+
 
 	void NormalizeHorizonOffset();
+	void CastRay(Vector2D initialPosition, float rotation, float maxDistance);
 };
 
