@@ -4,6 +4,7 @@
 */
 
 #pragma once
+#include <math.h>
 
 struct Vector2D 
 {
@@ -20,9 +21,17 @@ struct Vector2D
 		this->x = x;
 		this->y = y;
 	}
+	float GetMagnitude() 
+	{
+		return sqrtf((this->x * this->x) + (this->y * this->y));
+	}
 	Vector2D operator*(float const& s1) 
 	{
 		return Vector2D(this->x * s1, this->y * s1);
+	}
+	Vector2D operator/(float const& s1) 
+	{
+		return Vector2D(this->x / s1, this->y / s1);
 	}
 	Vector2D operator+(Vector2D const& v1) 
 	{

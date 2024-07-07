@@ -71,7 +71,8 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	directionVec.x = cosf(rotation);
 	directionVec.y = sinf(rotation);
 
-	for (int i = 1; i < 20; i++) 
+	//Rudimentary Method, can be improved
+	for (int i = 1; i < 50; i++) 
 	{
 	}
 
