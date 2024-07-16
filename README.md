@@ -3,7 +3,7 @@ Simple Flat Colour Raycaster as an experiment into graphics rendering techniques
 
 ### Using
 * OpenGL 1.0 (This project does not need shaders and just requires draw calls to the screen)
-* GLUT (Window Management, Event Management, It is fresh in my memory currently)
+* freeGLUT (Window Management, Event Management, It is fresh in my memory currently)
 * (Possibly may add more renderer options in the future to add even more on the GPU but so far its fine)
 
 ### Build instructions
