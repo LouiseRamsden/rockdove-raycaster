@@ -46,8 +46,8 @@ void Raycaster::OGLRender()
 		glEnd();
 	}
 
-	//SetRotation(m_rotation + 1);
-	CastRay(Vector2D(5.75f, 5.75f), 45, 100);
+	SetRotation(m_rotation + 1);
+	CastRay(Vector2D(5.75f, 5.75f), m_rotation, 100);
 
 	
 }
@@ -75,12 +75,7 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	directionVec.x = 1 * cosf(DegToRad(rotation));
 	directionVec.y = 1 * sinf(DegToRad(rotation));
 
-	Vector2D initialJump;
-	initialJump.x = directionVec.x > 0 ? ceilf(initialPosition.x) - initialPosition.x : floorf(initialPosition.x) - initialPosition.x;
-	initialJump.y = directionVec.y > 0 ? ceilf(initialPosition.y) - initialPosition.y : floorf(initialPosition.y) - initialPosition.y;
-
-	initialJump = fabsf(initialJump.x) < fabsf(initialJump.y) ? directionVec * initialJump.x : directionVec * initialJump.y;
-	std::cout << initialJump.x + initialPosition.x << "\n";
+	std::cout << directionVec.x + initialPosition.x << " " << directionVec.y + initialPosition.y << "\n";
 
 	return result;
 
@@ -112,7 +107,7 @@ void Raycaster::SetRotation(float newRotation)
 		m_rotation = newRotation - 360.0f;
 		return;
 	}
-	if (newRotation < 360.0f) 
+	if (newRotation < 0.0f) 
 	{
 		m_rotation = newRotation + 360.0f;
 		return;
