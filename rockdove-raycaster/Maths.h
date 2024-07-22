@@ -6,6 +6,8 @@
 #pragma once
 #include <math.h>
 
+#define PI 3.1415927
+
 struct Vector2D 
 {
 	float x, y;
@@ -37,4 +39,13 @@ struct Vector2D
 	{
 		return Vector2D(this->x + v1.x, this->y + v1.y);
 	}
+	Vector2D operator-(Vector2D const& v1) 
+	{
+		return Vector2D(this->x - v1.x, this->y - v1.y);
+	}
 };
+
+inline float DegToRad(float degrees) 
+{
+	return degrees * (PI / 180);
+}

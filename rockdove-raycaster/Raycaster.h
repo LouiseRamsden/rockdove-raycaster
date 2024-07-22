@@ -30,10 +30,10 @@ public:
 
 	void OGLRender();
 
-	uint16_t GetRows();
+	int GetRows();
 	void SetRows(int newRows);
 
-	uint16_t GetColumns();
+	int GetColumns();
 	void SetColumns(int newColumns);
 
 	float GetHorizonOffset();
@@ -49,8 +49,8 @@ public:
 	void SetFieldOfView(float newFieldOfView);
 
 private:
-	uint16_t m_rows;
-	uint16_t m_columns;
+	int m_rows;
+	int m_columns;
 	float m_horizonOffset;
 	Vector2D m_viewportPosition;
 	float m_rotation;

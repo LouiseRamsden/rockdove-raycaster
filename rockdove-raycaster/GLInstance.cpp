@@ -5,7 +5,7 @@
 
 GLInstance::GLInstance(int argc, char* argv[]) 
 {
-	m_renderer = new Raycaster(3, 320);
+	m_renderer = new Raycaster(320, 320);
 
 	GLUTCallbacks::Init(this);
 

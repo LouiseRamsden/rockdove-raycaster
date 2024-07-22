@@ -20,6 +20,7 @@ void Raycaster::OGLRender()
 	static int a = 0;
 	a++;
 
+
 	//Render Sky
 	for (int i = 0; i < m_columns; i++)
 	{
@@ -45,6 +46,9 @@ void Raycaster::OGLRender()
 		glEnd();
 	}
 
+	//SetRotation(m_rotation + 1);
+	CastRay(Vector2D(5.75f, 5.75f), 45, 100);
+
 	
 }
 void Raycaster::NormalizeHorizonOffset()
@@ -68,13 +72,15 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	RayHitResult result;
 	result.bHit = false;
 	Vector2D directionVec;
-	directionVec.x = cosf(rotation);
-	directionVec.y = sinf(rotation);
+	directionVec.x = 1 * cosf(DegToRad(rotation));
+	directionVec.y = 1 * sinf(DegToRad(rotation));
 
-	//Rudimentary Method, can be improved
-	for (int i = 1; i < 50; i++) 
-	{
-	}
+	Vector2D initialJump;
+	initialJump.x = directionVec.x > 0 ? ceilf(initialPosition.x) - initialPosition.x : floorf(initialPosition.x) - initialPosition.x;
+	initialJump.y = directionVec.y > 0 ? ceilf(initialPosition.y) - initialPosition.y : floorf(initialPosition.y) - initialPosition.y;
+
+	initialJump = fabsf(initialJump.x) < fabsf(initialJump.y) ? directionVec * initialJump.x : directionVec * initialJump.y;
+	std::cout << initialJump.x + initialPosition.x << "\n";
 
 	return result;
 
@@ -82,10 +88,10 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 
 //Getters and Setters hall of OOP
 //m_rows
-uint16_t Raycaster::GetRows() { return m_rows; }
+int Raycaster::GetRows() { return m_rows; }
 void Raycaster::SetRows(int newRows) { m_rows = newRows; }
 //m_columns
-uint16_t Raycaster::GetColumns() { return m_columns; }
+int Raycaster::GetColumns() { return m_columns; }
 void Raycaster::SetColumns(int newColumns) { m_columns = newColumns; }
 //m_horizonOffset 
 float Raycaster::GetHorizonOffset() { return m_horizonOffset; }
