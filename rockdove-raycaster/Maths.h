@@ -27,22 +27,10 @@ struct Vector2D
 	{
 		return sqrtf((this->x * this->x) + (this->y * this->y));
 	}
-	Vector2D operator*(float const& s1) 
-	{
-		return Vector2D(this->x * s1, this->y * s1);
-	}
-	Vector2D operator/(float const& s1) 
-	{
-		return Vector2D(this->x / s1, this->y / s1);
-	}
-	Vector2D operator+(Vector2D const& v1) 
-	{
-		return Vector2D(this->x + v1.x, this->y + v1.y);
-	}
-	Vector2D operator-(Vector2D const& v1) 
-	{
-		return Vector2D(this->x - v1.x, this->y - v1.y);
-	}
+	Vector2D operator*(float const& s1) { return Vector2D(this->x * s1, this->y * s1); }
+	Vector2D operator/(float const& s1) { return Vector2D(this->x / s1, this->y / s1); }
+	Vector2D operator+(Vector2D const& v1) { return Vector2D(this->x + v1.x, this->y + v1.y); }
+	Vector2D operator-(Vector2D const& v1) { return Vector2D(this->x - v1.x, this->y - v1.y); }
 };
 
 inline float DegToRad(float degrees) 

@@ -23,6 +23,8 @@ struct RayHitResult
 
 };
 
+
+
 class Raycaster
 {
 public:

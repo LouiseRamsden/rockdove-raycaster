@@ -86,21 +86,18 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 		return result;
 	}
 
-
-	for (float step = 0.01f; step < maxDistance; step += 0.01f)
+	//Crude method, can be improved upon, may cause issues with corners
+	for (float step = 0.001f; step < maxDistance; step += 0.01f)
 	{
 		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] == 1) 
 		{
 			std::cout << "HIT!!!!! at " << step << "\n";
+			result.bHit = true;
+			result.distance = step;
+			result.hitPosition = Vector2D(initialPosition.x + (directionVec.x * step), initialPosition.y + (directionVec.y * step));
 			break;
 		}
 	}
-
-
-
-	//std::cout << directionVec.x + initialPosition.x << " " << directionVec.y + initialPosition.y << "\n";
-	std::cout << m_rotation << "\n";
-
 	return result;
 
 }
