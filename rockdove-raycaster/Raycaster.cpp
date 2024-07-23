@@ -87,14 +87,13 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	}
 
 
-	for (float step = 0.01f; step < maxDistance; step += step)
+	for (float step = 0.01f; step < maxDistance; step += 0.01f)
 	{
 		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] == 1) 
 		{
 			std::cout << "HIT!!!!! at " << step << "\n";
 			break;
 		}
-			
 	}
 
 
