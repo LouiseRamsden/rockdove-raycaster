@@ -5,6 +5,7 @@
 
 #include "Map.h"
 
+
 Raycaster::Raycaster(int rows, int columns) 
 {
 	SetRows(rows);
@@ -26,7 +27,7 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-		glColor3f((sinf((float)a / 100.0f) + 1.0f) / 2.0f, 1.0f - ((float)i / (float)m_columns), (cosf((float)a / 100) + 1.0f) / 2.0f);
+		glColor3f(0.0f,1.0f,1.0f);
 		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
 		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
 		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
@@ -51,6 +52,9 @@ void Raycaster::OGLRender()
 
 	
 }
+
+
+
 void Raycaster::NormalizeHorizonOffset()
 {
 	if (m_horizonOffset > 1.0f) 
@@ -75,13 +79,14 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	directionVec.x = 1 * cosf(DegToRad(rotation));
 	directionVec.y = 1 * sinf(DegToRad(rotation));
 
+
 	std::cout << directionVec.x + initialPosition.x << " " << directionVec.y + initialPosition.y << "\n";
 
 	return result;
 
 }
 
-//Getters and Setters hall of OOP
+
 //m_rows
 int Raycaster::GetRows() { return m_rows; }
 void Raycaster::SetRows(int newRows) { m_rows = newRows; }
