@@ -48,7 +48,7 @@ void Raycaster::OGLRender()
 	}
 
 	SetRotation(m_rotation + 1);
-	CastRay(Vector2D(5.75f, 5.75f), m_rotation, 100);
+	CastRay(Vector2D(1.5, 1.5f), m_rotation, 4);
 
 	
 }
@@ -78,6 +78,26 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	Vector2D directionVec;
 	directionVec.x = 1 * cosf(DegToRad(rotation));
 	directionVec.y = 1 * sinf(DegToRad(rotation));
+	
+	if (g_map[(int)initialPosition.x][(int)initialPosition.y] == 1)
+	{
+		result.bHit = true;
+		result.hitPosition = initialPosition;
+		result.distance = 0.0f;
+		return result;
+	}
+
+
+	for (float step = 0.05f; step < maxDistance; step += step)
+	{
+		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] == 1) 
+		{
+			std::cout << "HIT!!!!!";
+			break;
+		}
+			
+	}
+
 
 
 	std::cout << directionVec.x + initialPosition.x << " " << directionVec.y + initialPosition.y << "\n";
