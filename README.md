@@ -1,4 +1,4 @@
-# rockdove-raycaster
+# rockdove-raycaster (WORK IN PROGRESS!)
 Simple Flat Colour Raycaster as an experiment into graphics rendering techniques
 
 ### Using
