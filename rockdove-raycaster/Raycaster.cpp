@@ -47,18 +47,18 @@ void Raycaster::OGLRender()
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
 		glEnd();
 	}
+
 	//Render Walls
 	float rayDivisionSize = m_fieldOfView / (float)m_columns;
-
 	for (int i = 0; i < m_columns; i++) 
 	{
 		RayHitResult rayHit = CastRay(Vector2D(1.5, 1.5f), (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1))))), 20.0f);
 		glBegin(GL_POLYGON);
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
+			glColor3f(1.0f, 0.0f, 0.0f);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
 		glEnd();
 	}
 
