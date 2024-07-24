@@ -14,16 +14,12 @@
 
 #include "Maths.h"
 
-
 struct RayHitResult 
 {
 	Vector2D hitPosition;
 	float distance;
 	bool bHit;
-
 };
-
-
 
 class Raycaster
 {

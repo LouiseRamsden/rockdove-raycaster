@@ -37,3 +37,8 @@ inline float DegToRad(float degrees)
 {
 	return degrees * (PI / 180.0f);
 }
+
+inline Vector2D RotToVec(float rot) 
+{
+	return Vector2D(1.0f * cosf(DegToRad(rot)), 1.0f * sinf(DegToRad(rot)));
+}

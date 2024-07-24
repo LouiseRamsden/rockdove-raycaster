@@ -13,6 +13,7 @@ Raycaster::Raycaster(int rows, int columns)
 	SetHorizonOffset(0.0f);
 	SetViewportPosition(Vector2D(5, 5));
 	SetRotation(0.0f);
+	SetFieldOfView(90.0f);
 }
 
 //OpenGl 1.0 Rendering function
@@ -27,11 +28,11 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-		glColor3f(0.0f,1.0f,1.0f);
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
+			glColor3f(0.0f,1.0f,1.0f);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 		glEnd();
 	}
 	//Render Floor
@@ -39,11 +40,23 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-		glColor3f(0.0f,1.0f,0.0f);
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
-		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
+			glColor3f(0.0f,1.0f,0.0f);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
+		glEnd();
+	}
+	//Render Walls
+	float rayDivisionSize = m_fieldOfView / (float)m_columns;
+
+	for (int i = 0; i < m_columns; i++) 
+	{
+		RayHitResult rayHit = CastRay(Vector2D(1.5, 1.5f), (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1))))), 100.0f);
+		glBegin(GL_POLYGON);
+		glColor3f(1.0f, 0.0f, 0.0f);
+
+		//Draw Code to be implemented
 		glEnd();
 	}
 
@@ -74,9 +87,7 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 {
 	RayHitResult result;
 	result.bHit = false;
-	Vector2D directionVec;
-	directionVec.x = 1 * cosf(DegToRad(rotation));
-	directionVec.y = 1 * sinf(DegToRad(rotation));
+	Vector2D directionVec = RotToVec(rotation);
 	
 	if (g_map[(int)initialPosition.x][(int)initialPosition.y] == 1)
 	{
@@ -123,15 +134,13 @@ void Raycaster::SetViewportPosition(Vector2D newViewportPosition) { m_viewportPo
 float Raycaster::GetRotation() { return m_rotation; }
 void Raycaster::SetRotation(float newRotation) 
 { 
-	if (newRotation > 360.0f) 
+	while (newRotation > 360.0f) 
 	{
-		m_rotation = newRotation - 360.0f;
-		return;
+		newRotation -= 360.0f;
 	}
-	if (newRotation < 0.0f) 
+	while (newRotation < 0.0f) 
 	{
-		m_rotation = newRotation + 360.0f;
-		return;
+		newRotation += 360.0f;
 	}
 	m_rotation = newRotation; 
 }
