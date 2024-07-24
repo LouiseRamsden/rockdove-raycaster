@@ -35,5 +35,5 @@ struct Vector2D
 
 inline float DegToRad(float degrees) 
 {
-	return degrees * (PI / 180);
+	return degrees * (PI / 180.0f);
 }
