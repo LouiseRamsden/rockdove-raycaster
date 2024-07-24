@@ -11,7 +11,7 @@ Raycaster::Raycaster(int rows, int columns)
 	SetRows(rows);
 	SetColumns(columns);
 	SetHorizonOffset(0.0f);
-	SetViewportPosition(Vector2D(5, 5));
+	SetViewportPosition(Vector2D(1.5, 1.5));
 	SetRotation(0.0f);
 	SetFieldOfView(90.0f);
 }
@@ -53,12 +53,13 @@ void Raycaster::OGLRender()
 	for (int i = 0; i < m_columns; i++) 
 	{
 		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1))))), 20.0f);
+		float heightModifier = (0.5f / (rayHit.distance * 2)); //Little calculation to determine the height of the walls in regards to rayHit
 		glBegin(GL_POLYGON);
 			glColor3f(1.0f, 0.0f, 0.0f);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 		glEnd();
 	}
 
