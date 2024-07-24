@@ -55,8 +55,10 @@ void Raycaster::OGLRender()
 		RayHitResult rayHit = CastRay(Vector2D(1.5, 1.5f), (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1))))), 100.0f);
 		glBegin(GL_POLYGON);
 		glColor3f(1.0f, 0.0f, 0.0f);
-
-		//Draw Code to be implemented
+		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
+		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + (0.5f / rayHit.distance));
+		glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
+		glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - (0.5f / rayHit.distance));
 		glEnd();
 	}
 
@@ -102,7 +104,6 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	{
 		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] == 1) 
 		{
-			std::cout << "HIT!!!!! at " << step << "\n";
 			result.bHit = true;
 			result.distance = step;
 			result.hitPosition = Vector2D(initialPosition.x + (directionVec.x * step), initialPosition.y + (directionVec.y * step));
