@@ -10,4 +10,4 @@ Simple Flat Colour Raycaster as an experiment into graphics rendering techniques
 Should be debugged and compiled from inside either VisualStudio or Rider. Due to glut being a 32 bit library, the project **must** be compiled using x86 not x64 otherwise there will be a lot of linker errors.
 
 ### Progress screenshots
-![25/07/2024](https://github.com/LouiseRamsden/rockdove-raycaster/blob/main/screenshots/rockdove-raycaster250724.png?raw=true)
+![25/07/2024](https://github.com/LouiseRamsden/rockdove-raycaster/blob/main/screenshots/rockdove-raycaster25072024.png?raw=true)
