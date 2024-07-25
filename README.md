@@ -11,3 +11,4 @@ Should be debugged and compiled from inside either VisualStudio or Rider. Due to
 
 ### Progress screenshots
 ![25/07/2024](https://github.com/LouiseRamsden/rockdove-raycaster/blob/main/screenshots/rockdove-raycaster25072024.png?raw=true)
+(25/07/2024) Made it look a little like a circus, raycaster works but it has some issues, my method of drawing is not perfect
