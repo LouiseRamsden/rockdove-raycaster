@@ -128,6 +128,9 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 			case 8:
 				result.rayColor = { 1,1,1 }; 
 				break;
+			case 9:
+				result.rayColor = { 0.20f, 0.36, 0.0f };
+				break;
 			default:
 				result.rayColor = { 0,0,0 };
 				break;
