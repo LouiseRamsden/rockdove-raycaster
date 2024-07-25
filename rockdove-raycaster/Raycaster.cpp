@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 
 #include "Map.h"
 
@@ -19,10 +20,6 @@ Raycaster::Raycaster(int rows, int columns)
 //OpenGl 1.0 Rendering function
 void Raycaster::OGLRender() 
 {
-	static int a = 0;
-	a++;
-
-
 	//Render Sky
 	for (int i = 0; i < m_columns; i++)
 	{
@@ -52,18 +49,16 @@ void Raycaster::OGLRender()
 	float rayDivisionSize = m_fieldOfView / (float)m_columns;
 	for (int i = 0; i < m_columns; i++) 
 	{
-		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1))))), 20.0f);
-		float heightModifier = (0.5f / (rayHit.distance * 2)); //Little calculation to determine the height of the walls in regards to rayHit
+		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1)))) - 45.0f), 20.0f);
+		float heightModifier = (1.0f / (rayHit.distance * 1.2f));
 		glBegin(GL_POLYGON);
-			glColor3f(1.0f, 0.0f, 0.0f);
+			glColor3f(rayHit.rayColor.r, rayHit.rayColor.g, rayHit.rayColor.b);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 		glEnd();
 	}
-
-	SetRotation(m_rotation + 1);
 	
 }
 
@@ -102,11 +97,42 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	//Crude method, can be improved upon, may cause issues with corners
 	for (float step = 0.001f; step < maxDistance; step += 0.01f)
 	{
-		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] == 1) 
+		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] != 0) 
 		{
 			result.bHit = true;
 			result.distance = step;
 			result.hitPosition = Vector2D(initialPosition.x + (directionVec.x * step), initialPosition.y + (directionVec.y * step));
+
+			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))]) 
+			{
+			case 1:
+				result.rayColor = {0,0,0};
+				break;
+			case 2:
+				result.rayColor = {0,0,1};
+				break;
+			case 3:
+				result.rayColor = {0,1,0};
+				break;
+			case 4:
+				result.rayColor = {1,0,0};
+				break;
+			case 5:
+				result.rayColor = {1,1,0};
+				break;
+			case 6:
+				result.rayColor = {1,0,1};
+				break;
+			case 7:
+				result.rayColor = {0,1,1};
+				break;
+			case 8:
+				result.rayColor = {1,1,1}; 
+				break;
+			default:
+				result.rayColor = { 0,0,0 };
+				break;
+			}
 			break;
 		}
 	}

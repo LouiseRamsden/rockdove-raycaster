@@ -31,4 +31,12 @@ namespace GLUTCallbacks
 			glutTimerFunc(refreshMS - updateTime, GLUTCallbacks::Timer, refreshMS);
 		}
 	}
+
+	void Keyboard(unsigned char key, int x, int y) 
+	{
+		if (glInstance != nullptr) 
+		{
+			glInstance->Keyboard(key,x,y);
+		}
+	}
 }

@@ -14,6 +14,7 @@ GLInstance::GLInstance(int argc, char* argv[])
 	glutCreateWindow("rockdove-raycaster by Louise Ramsden");
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(16, GLUTCallbacks::Timer, 16); //Lock 60(ish) FPS
+	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMainLoop();
 }
 
@@ -27,6 +28,24 @@ void GLInstance::Display()
 void GLInstance::Update() 
 {
 	glutPostRedisplay();
+}
+
+void GLInstance::Keyboard(unsigned char key, int x, int y) 
+{
+
+	switch (key) 
+	{
+	case 'q':
+		m_renderer->SetRotation((m_renderer->GetRotation() + 10));
+		break;
+	case 'e':
+		m_renderer->SetRotation((m_renderer->GetRotation() - 10));
+		break;
+	case 'w':
+		m_renderer->SetViewportPosition(m_renderer->GetViewportPosition() - (RotToVec(m_renderer->GetRotation())/10));
+		break;
+
+	}
 }
 
 GLInstance::~GLInstance(void) 

@@ -12,6 +12,7 @@
 #include "GL/freeglut.h"
 
 #include "Raycaster.h"
+#include "Maths.h"
 class GLInstance
 {
 public:
@@ -20,6 +21,8 @@ public:
 	void Display();
 
 	void Update();
+
+	void Keyboard(unsigned char key, int x, int y);
 	
 	~GLInstance(void);
 

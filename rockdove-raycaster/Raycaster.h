@@ -14,9 +14,15 @@
 
 #include "Maths.h"
 
+struct RayColor 
+{
+	float r, g, b;
+};
+
 struct RayHitResult 
 {
 	Vector2D hitPosition;
+	RayColor rayColor;
 	float distance;
 	bool bHit;
 };
