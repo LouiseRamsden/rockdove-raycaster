@@ -2,7 +2,6 @@
 
 #include <math.h>
 #include <iostream>
-#include <algorithm>
 
 #include "Map.h"
 
@@ -50,7 +49,7 @@ void Raycaster::OGLRender()
 	for (int i = 0; i < m_columns; i++) 
 	{
 		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1)))) - 45.0f), 20.0f);
-		float heightModifier = (1.0f / (rayHit.distance * 1.2f));
+		float heightModifier = (1.0f / (rayHit.distance * 2));
 		glBegin(GL_POLYGON);
 			glColor3f(rayHit.rayColor.r, rayHit.rayColor.g, rayHit.rayColor.b);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
@@ -106,28 +105,28 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))]) 
 			{
 			case 1:
-				result.rayColor = {0,0,0};
+				result.rayColor = { 0,0,0 };
 				break;
 			case 2:
-				result.rayColor = {0,0,1};
+				result.rayColor = { 0,0,1 };
 				break;
 			case 3:
-				result.rayColor = {0,1,0};
+				result.rayColor = { 0,1,0 };
 				break;
 			case 4:
-				result.rayColor = {1,0,0};
+				result.rayColor = { 1,0,0 };
 				break;
 			case 5:
-				result.rayColor = {1,1,0};
+				result.rayColor = { 1,1,0 };
 				break;
 			case 6:
-				result.rayColor = {1,0,1};
+				result.rayColor = { 1,0,1 };
 				break;
 			case 7:
-				result.rayColor = {0,1,1};
+				result.rayColor = { 0,1,1 };
 				break;
 			case 8:
-				result.rayColor = {1,1,1}; 
+				result.rayColor = { 1,1,1 }; 
 				break;
 			default:
 				result.rayColor = { 0,0,0 };
