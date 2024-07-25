@@ -11,6 +11,7 @@ GLInstance::GLInstance(int argc, char* argv[])
 	GLUTCallbacks::Init(this);
 
 	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(1600, 900);
 	glutCreateWindow("rockdove-raycaster by Louise Ramsden");
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -24,6 +25,7 @@ void GLInstance::Display()
 	glClear(GL_COLOR_BUFFER_BIT);
 		m_renderer->OGLRender();
 	glFlush();
+	glutSwapBuffers();
 }
 
 void GLInstance::Update() 
