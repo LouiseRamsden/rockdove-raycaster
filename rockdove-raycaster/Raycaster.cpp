@@ -39,7 +39,7 @@ void Raycaster::OGLRender()
 			glColor3f(0.0f,0.2f,0.13f);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-			glColor3f(0.0f, 0.2f / 2, 0.13f / 2);
+			glColor3f(0.0f, 0.2f / 2, 0.13f / 2); // Shadows are half brightness at the bottom, can probably make variable
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
 		glEnd();
@@ -55,7 +55,7 @@ void Raycaster::OGLRender()
 			glColor3f(rayHit.rayColor.r, rayHit.rayColor.g, rayHit.rayColor.b);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
-			glColor3f(rayHit.rayColor.r /2 , rayHit.rayColor.g / 2, rayHit.rayColor.b / 2);
+			glColor3f(rayHit.rayColor.r /2 , rayHit.rayColor.g / 2, rayHit.rayColor.b / 2); // Half brightness shadows
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 		glEnd();
