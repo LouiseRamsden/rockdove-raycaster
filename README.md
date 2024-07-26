@@ -12,3 +12,5 @@ Should be debugged and compiled from inside either VisualStudio or Rider. Due to
 ### Progress screenshots
 ![25/07/2024](https://github.com/LouiseRamsden/rockdove-raycaster/blob/main/screenshots/rockdove-raycaster25072024.png?raw=true)
 (25/07/2024) Made it look a little like a circus, raycaster works but it has some issues, my method of drawing is not perfect
+![26/07/2024](https://github.com/LouiseRamsden/rockdove-raycaster/blob/main/screenshots/rockdove-raycaster26072024.png?raw=true)
+(26/07/2024) Added some fake lighting to make it have some more depth, it works surprisingly well. I made it look like a hedge maze during sun down, which has a sort of eerie feeling.
