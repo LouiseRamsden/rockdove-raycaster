@@ -36,10 +36,10 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(0.0f,0.2f,0.13f);
+			glColor3f(0.0f,0.2f/2,0.13f/2);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-			glColor3f(0.0f, 0.2f / 2, 0.13f / 2); // Shadows are half brightness at the bottom, can probably make variable
+			glColor3f(0.0f, 0.2f , 0.13f ); // Shadows are half brightness at the bottom, can probably make variable
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
 		glEnd();
