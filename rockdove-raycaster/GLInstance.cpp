@@ -59,6 +59,12 @@ void GLInstance::Keyboard(unsigned char key, int x, int y)
 		}
 
 		break;
+	case 'q':
+		m_renderer->SetHorizonOffset(m_renderer->GetHorizonOffset() + 0.1f);
+		break;
+	case 'e':
+		m_renderer->SetHorizonOffset(m_renderer->GetHorizonOffset() - 0.1f);
+		break;
 
 	}
 }
