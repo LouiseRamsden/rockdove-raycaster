@@ -24,9 +24,10 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(0.53f,0.81f,0.92f);
+			glColor3f(0.03f,0.26f,0.47f);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
+			glColor3f(0.98f, 0.37f, 0.33f);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 		glEnd();
@@ -36,10 +37,10 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(0.0f,0.2f/2,0.13f/2);
+			glColor3f(0.0f/3,0.2f/3,0.13f/3);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-			glColor3f(0.0f, 0.2f , 0.13f ); // Shadows are half brightness at the bottom, can probably make variable
+			glColor3f(0.0f/2, 0.2f/2, 0.13f/2); // Shadows are half brightness at the bottom, can probably make variable
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
 		glEnd();
@@ -52,10 +53,10 @@ void Raycaster::OGLRender()
 		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1)))) - 45.0f), 20.0f);
 		float heightModifier = (1.0f / (rayHit.distance * 2));
 		glBegin(GL_POLYGON);
-			glColor3f(rayHit.rayColor.r, rayHit.rayColor.g, rayHit.rayColor.b);
+			glColor3f(rayHit.rayColor.r/2, rayHit.rayColor.g/2, rayHit.rayColor.b/2);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
-			glColor3f(rayHit.rayColor.r /2 , rayHit.rayColor.g / 2, rayHit.rayColor.b / 2); // Half brightness shadows
+			glColor3f(rayHit.rayColor.r /4 , rayHit.rayColor.g / 4, rayHit.rayColor.b / 4); // Half brightness shadows
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
 		glEnd();
