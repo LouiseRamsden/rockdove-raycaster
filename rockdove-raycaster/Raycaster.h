@@ -22,6 +22,7 @@ struct RayColor
 struct RayHitResult 
 {
 	Vector2D hitPosition;
+	Vector2D rayDirection;
 	RayColor rayColor;
 	float distance;
 	bool bHit;
