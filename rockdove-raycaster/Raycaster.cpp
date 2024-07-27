@@ -13,7 +13,6 @@ Raycaster::Raycaster(int rows, int columns)
 	SetHorizonOffset(0.0f);
 	SetViewportPosition(Vector2D(1.5, 1.5));
 	SetRotation(0.0f);
-	SetFieldOfView(90.0f);
 }
 
 //OpenGl 1.0 Rendering function
@@ -179,4 +178,3 @@ void Raycaster::SetRotation(float newRotation)
 }
 //m_fieldOfView
 float Raycaster::GetFieldOfView() { return m_fieldOfView; }
-void Raycaster::SetFieldOfView(float newFieldOfView) { m_fieldOfView = newFieldOfView; }

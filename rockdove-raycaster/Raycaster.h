@@ -51,7 +51,6 @@ public:
 	void SetRotation(float newRotation);
 
 	float GetFieldOfView();
-	void SetFieldOfView(float newFieldOfView);
 
 private:
 	int m_rows;
@@ -59,7 +58,7 @@ private:
 	float m_horizonOffset;
 	Vector2D m_viewportPosition;
 	float m_rotation;
-	float m_fieldOfView;
+	float m_fieldOfView = 90.0f;
 
 
 	void NormalizeHorizonOffset();
