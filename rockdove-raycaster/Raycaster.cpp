@@ -24,10 +24,10 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(0.03f,0.26f,0.47f);
+			glColor3f(0.03f/2,0.26f/2,0.47f/2);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
-			glColor3f(0.98f, 0.37f, 0.33f);
+			glColor3f(0.98f/2, 0.30f/2, 0.15f/2);
 			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
 			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
 		glEnd();
