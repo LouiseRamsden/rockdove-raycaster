@@ -60,8 +60,7 @@ private:
 	float m_rotation;
 	float m_fieldOfView = 90.0f;
 
-
-	void NormalizeHorizonOffset();
+	float NormalizeToDivisions(float value);
 	RayHitResult CastRay(Vector2D initialPosition, float rotation, float maxDistance);
 };
 

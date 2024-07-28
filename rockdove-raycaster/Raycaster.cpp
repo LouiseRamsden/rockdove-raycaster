@@ -53,11 +53,11 @@ void Raycaster::OGLRender()
 		float heightModifier = (1.0f / (rayHit.distance * 2));
 		glBegin(GL_POLYGON);
 			glColor3f(rayHit.rayColor.r/2, rayHit.rayColor.g/2, rayHit.rayColor.b/2);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset + heightModifier);
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
 			glColor3f(rayHit.rayColor.r /4 , rayHit.rayColor.g / 4, rayHit.rayColor.b / 4); // Half brightness shadows
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset - heightModifier);
+			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
+			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
 		glEnd();
 	}
 	
@@ -65,21 +65,20 @@ void Raycaster::OGLRender()
 
 
 
-void Raycaster::NormalizeHorizonOffset()
+
+float Raycaster::NormalizeToDivisions(float value) 
 {
-	if (m_horizonOffset > 1.0f) 
+	if (value > 1.0f)
 	{
-		m_horizonOffset = 1.0f;
-		return;
+		return 1.0f;
 	}
-	if (m_horizonOffset < -1.0f) 
+	if (value < -1.0f)
 	{
-		m_horizonOffset = -1.0f;
-		return;
+		return -1.0f;
 	}
 	float step = 2.0f / m_rows;
-	float mult = (int)((m_horizonOffset + 1.0f) / step);
-	m_horizonOffset = (mult * step) - 1;
+	float mult = (int)((value + 1.0f) / step);
+	return (mult * step) - 1.0f;
 }
 RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance)
 {
@@ -156,8 +155,7 @@ void Raycaster::SetColumns(int newColumns) { m_columns = newColumns; }
 float Raycaster::GetHorizonOffset() { return m_horizonOffset; }
 void Raycaster::SetHorizonOffset(float newHorizonOffset) 
 { 
-	m_horizonOffset = newHorizonOffset; 
-	NormalizeHorizonOffset();
+	m_horizonOffset = NormalizeToDivisions(newHorizonOffset); 
 }
 //m_viewportPosition
 Vector2D Raycaster::GetViewportPosition() { return m_viewportPosition; }
