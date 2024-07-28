@@ -23,7 +23,7 @@ GLInstance::GLInstance(int argc, char* argv[])
 void GLInstance::Display() 
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-		m_renderer->OGLRender();
+	m_renderer->OGLRender();
 	glFlush();
 	glutSwapBuffers();
 }

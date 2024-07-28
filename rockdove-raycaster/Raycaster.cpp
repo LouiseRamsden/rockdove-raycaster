@@ -106,27 +106,6 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 
 			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))]) 
 			{
-			case 1:
-				result.rayColor = { 0,0,0 };
-				break;
-			case 2:
-				result.rayColor = { 0,0,1 };
-				break;
-			case 3:
-				result.rayColor = { 0,1,0 };
-				break;
-			case 4:
-				result.rayColor = { 1,0,0 };
-				break;
-			case 5:
-				result.rayColor = { 1,1,0 };
-				break;
-			case 6:
-				result.rayColor = { 1,0,1 };
-				break;
-			case 7:
-				result.rayColor = { 0,1,1 };
-				break;
 			case 8:
 				result.rayColor = { 1,1,1 }; 
 				break;
