@@ -14,16 +14,28 @@
 
 #include "Maths.h"
 
-struct RayColor 
+struct Color3
 {
+	Color3() 
+	{
+		this->r = 0.0f;
+		this->g = 0.0f;
+		this->b = 0.0f;
+	}
+	Color3(float r, float g, float b) 
+	{
+		this->r = r;
+		this->g = g;
+		this->b = b;
+	}
 	float r, g, b;
 };
 
-struct RayHitResult 
+struct RayHitResult
 {
 	Vector2D hitPosition;
 	Vector2D rayDirection;
-	RayColor rayColor;
+	Color3 rayColor;
 	float distance;
 	bool bHit;
 };
@@ -52,6 +64,19 @@ public:
 
 	float GetFieldOfView();
 
+	float GetDarkness();
+	void SetDarkness(const float newDarkness);
+
+	Color3 GetFloorColor();
+	void SetFloorColor(Color3 newFloorColor);
+
+	Color3 GetHorizonColor();
+	void SetHorizonColor(Color3 newHorizonColor);
+
+	Color3 GetSkyColor();
+	void SetSkyColor(Color3 newSkyColor);
+	
+
 private:
 	int m_rows;
 	int m_columns;
@@ -59,10 +84,11 @@ private:
 	Vector2D m_viewportPosition;
 	float m_rotation;
 	float m_fieldOfView = 90.0f;
+	float m_darkness;
+	Color3 m_floorColor;
+	Color3 m_horizonColor;
+	Color3 m_skyColor;
 
 	float NormalizeToDivisions(float value);
 	RayHitResult CastRay(Vector2D initialPosition, float rotation, float maxDistance);
 };
-
-
-

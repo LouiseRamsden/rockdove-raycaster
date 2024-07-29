@@ -48,14 +48,18 @@ void GLInstance::Keyboard(unsigned char key, int x, int y)
 		break;
 	
 	case 'w':
-		if (g_map[(int)(m_renderer->GetViewportPosition().x - (RotToVec(m_renderer->GetRotation()).x / 10.0f))][(int)(m_renderer->GetViewportPosition().y - (RotToVec(m_renderer->GetRotation()).y / 10.0f))] == 0)
+		if (g_map[(int)(m_renderer->GetViewportPosition().x - (RotToVec(m_renderer->GetRotation()).x / 10.0f))] // x
+				[(int)(m_renderer->GetViewportPosition().y - (RotToVec(m_renderer->GetRotation()).y / 10.0f))] // y
+				== 0)
 		{
 			m_renderer->SetViewportPosition(m_renderer->GetViewportPosition() - (RotToVec(m_renderer->GetRotation()) / 10));
 		}
 
 		break;
 	case 's':
-		if (g_map[(int)(m_renderer->GetViewportPosition().x + (RotToVec(m_renderer->GetRotation()).x / 10.0f))][(int)(m_renderer->GetViewportPosition().y + (RotToVec(m_renderer->GetRotation()).y / 10.0f))] == 0)
+		if (g_map[(int)(m_renderer->GetViewportPosition().x + (RotToVec(m_renderer->GetRotation()).x / 10.0f))] // x
+				[(int)(m_renderer->GetViewportPosition().y + (RotToVec(m_renderer->GetRotation()).y / 10.0f))] // y
+				== 0) 
 		{
 			m_renderer->SetViewportPosition(m_renderer->GetViewportPosition() + (RotToVec(m_renderer->GetRotation()) / 10));
 		}

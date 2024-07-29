@@ -23,7 +23,7 @@ struct Vector2D
 		this->x = x;
 		this->y = y;
 	}
-	float GetMagnitude() 
+	float GetMagnitude()
 	{
 		return sqrtf((this->x * this->x) + (this->y * this->y));
 	}
@@ -33,12 +33,12 @@ struct Vector2D
 	Vector2D operator-(Vector2D const& v1) { return Vector2D(this->x - v1.x, this->y - v1.y); }
 };
 
-inline float DegToRad(float degrees) 
+inline float DegToRad(float degrees)
 {
 	return degrees * (PI / 180.0f);
 }
 
-inline Vector2D RotToVec(float rot) 
+inline Vector2D RotToVec(float rot)
 {
 	return Vector2D(1.0f * cosf(DegToRad(rot + 180)), 1.0f * sinf(DegToRad(rot + 180)));
 }
@@ -46,6 +46,7 @@ inline Vector2D RotToVec(float rot)
 template <typename T>
 inline void Swap(T& a, T& b) 
 {
+	
 	a ^= b;
 	b ^= a;
 	a ^= b;
