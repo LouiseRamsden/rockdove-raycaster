@@ -2,6 +2,8 @@
 
 #include "Map.h"
 
+#include <iostream>
+
 Raycaster::Raycaster(int rows, int columns) 
 {
 	SetRows(rows);
@@ -97,18 +99,23 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	}
 
 	//Crude method, can be improved upon, may cause issues with corners
+	Vector2D xJump = (directionVec / directionVec.x);
+	Vector2D yJump = (directionVec / directionVec.y);
+
+	
+
 	for (float step = 0.0f; step < maxDistance; )
 	{
-		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] != 0) 
+		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] != 0)
 		{
 			result.bHit = true;
 			result.distance = step;
 			result.hitPosition = Vector2D(initialPosition.x + (directionVec.x * step), initialPosition.y + (directionVec.y * step));
 
-			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))]) 
+			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))])
 			{
 			case 8:
-				result.rayColor = { 1,1,1 }; 
+				result.rayColor = { 1,1,1 };
 				break;
 			case 9:
 				result.rayColor = { 0.20f, 0.36, 0.0f };
