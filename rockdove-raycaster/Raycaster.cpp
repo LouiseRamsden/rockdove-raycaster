@@ -2,7 +2,6 @@
 
 #include "Map.h"
 
-
 Raycaster::Raycaster(int rows, int columns) 
 {
 	SetRows(rows);
@@ -98,7 +97,7 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	}
 
 	//Crude method, can be improved upon, may cause issues with corners
-	for (float step = 0.001f; step < maxDistance; step += 0.01f)
+	for (float step = 0.0f; step < maxDistance; )
 	{
 		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] != 0) 
 		{
@@ -120,6 +119,8 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 			}
 			break;
 		}
+		//Improvements here!
+		step += 0.01f;
 	}
 	return result;
 
