@@ -42,3 +42,11 @@ inline Vector2D RotToVec(float rot)
 {
 	return Vector2D(1.0f * cosf(DegToRad(rot + 180)), 1.0f * sinf(DegToRad(rot + 180)));
 }
+
+template <typename T>
+inline void Swap(T& a, T& b) 
+{
+	a ^= b;
+	b ^= a;
+	a ^= b;
+}

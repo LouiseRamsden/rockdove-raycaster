@@ -3,11 +3,13 @@
 #include "Map.h"
 
 
+#include <iostream>
+
+
 
 GLInstance::GLInstance(int argc, char* argv[]) 
 {
 	m_renderer = new Raycaster(600, 600);
-
 	GLUTCallbacks::Init(this);
 
 	glutInit(&argc, argv);
