@@ -52,7 +52,7 @@ void Raycaster::OGLRender()
 	float rayDivisionSize = m_fieldOfView / static_cast<float>(m_columns);
 	for (int i = 0; i < m_columns; i++) 
 	{
-		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * (static_cast<float>(i+1)))) - 45.0f), 20.0f);
+		RayHitResult rayHit = CastRay((m_viewportPosition), (m_rotation - (m_fieldOfView + (rayDivisionSize * (static_cast<float>(i+1)))) - 45.0f), 20.0f, 0.0f);
 		float heightModifier = (1.0f / (rayHit.distance * 2));
 		glBegin(GL_POLYGON);
 			glColor3f(rayHit.rayColor.r/ m_darkness, rayHit.rayColor.g/ m_darkness, rayHit.rayColor.b/ m_darkness);
@@ -83,11 +83,12 @@ float Raycaster::NormalizeToDivisions(const float value)
 	float mult = static_cast<int>((value + 1.0f) / step);
 	return (mult * step) - 1.0f;
 }
-RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance)
+RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance, float offset)
 {
 	RayHitResult result;
 	result.bHit = false;
 	Vector2D directionVec = RotToVec(rotation);
+	initialPosition = initialPosition + ((directionVec + RotToVec(90)) * offset);
 	result.rayDirection = directionVec;
 	
 	if (g_map[static_cast<int>(initialPosition.x)][static_cast<int>(initialPosition.y)] == 1)

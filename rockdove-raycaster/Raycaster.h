@@ -90,5 +90,5 @@ private:
 	Color3 m_skyColor;
 
 	float NormalizeToDivisions(float value);
-	RayHitResult CastRay(Vector2D initialPosition, float rotation, float maxDistance);
+	RayHitResult CastRay(Vector2D initialPosition, float rotation, float maxDistance, float offset);
 };
