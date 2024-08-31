@@ -26,12 +26,12 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(m_skyColor.r / m_darkness,m_skyColor.g / m_darkness,m_skyColor.b / m_darkness); //MAKE VARIABLE
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, 1.0f);
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, 1.0f);
-			glColor3f(m_horizonColor.r  /m_darkness, m_horizonColor.g / m_darkness, m_horizonColor.b / m_darkness); //MAKE VARIABLE
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
+			glColor3f(m_skyColor.r / m_darkness,m_skyColor.g / m_darkness,m_skyColor.b / m_darkness); 
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, 1.0f);
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, 1.0f);
+			glColor3f(m_horizonColor.r  /m_darkness, m_horizonColor.g / m_darkness, m_horizonColor.b / m_darkness); 
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, m_horizonOffset);
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, m_horizonOffset);
 		glEnd();
 	}
 	//Render Floor
@@ -39,28 +39,28 @@ void Raycaster::OGLRender()
 	{
 
 		glBegin(GL_POLYGON);
-			glColor3f(m_floorColor.r / (m_darkness + 1),m_floorColor.g / (m_darkness + 1),m_horizonColor.b / (m_darkness + 1)); //MAKE VARIABLE
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, m_horizonOffset);
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, m_horizonOffset);
-			glColor3f(m_floorColor.r / m_darkness, m_floorColor.g / m_darkness, m_floorColor.b / m_darkness); // MAKE VARIABLE
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, -1.0f);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, -1.0f);
+			glColor3f(m_floorColor.r / (m_darkness + 1),m_floorColor.g / (m_darkness + 1),m_horizonColor.b / (m_darkness + 1));
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, m_horizonOffset);
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, m_horizonOffset);
+			glColor3f(m_floorColor.r / m_darkness, m_floorColor.g / m_darkness, m_floorColor.b / m_darkness); 
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, -1.0f);
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, -1.0f);
 		glEnd();
 	}
 
 	//Render Walls
-	float rayDivisionSize = m_fieldOfView / (float)m_columns;
+	float rayDivisionSize = m_fieldOfView / static_cast<float>(m_columns);
 	for (int i = 0; i < m_columns; i++) 
 	{
-		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * ((float)(i+1)))) - 45.0f), 20.0f);
+		RayHitResult rayHit = CastRay(m_viewportPosition, (m_rotation - (m_fieldOfView + (rayDivisionSize * (static_cast<float>(i+1)))) - 45.0f), 20.0f);
 		float heightModifier = (1.0f / (rayHit.distance * 2));
 		glBegin(GL_POLYGON);
 			glColor3f(rayHit.rayColor.r/ m_darkness, rayHit.rayColor.g/ m_darkness, rayHit.rayColor.b/ m_darkness);
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, NormalizeToDivisions(m_horizonOffset + heightModifier));
 			glColor3f(rayHit.rayColor.r / (m_darkness + 2), rayHit.rayColor.g / (m_darkness + 2), rayHit.rayColor.b / (m_darkness + 2)); // Half brightness shadows
-			glVertex2f(-1.0f + (((float)i + 1.0f) / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
-			glVertex2f(-1.0f + ((float)i / (float)m_columns) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
+			glVertex2f(-1.0f + ((static_cast<float>(i) + 1.0f) / static_cast<float>(m_columns)) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
+			glVertex2f(-1.0f + (static_cast<float>(i) / static_cast<float>(m_columns)) * 2.0f, NormalizeToDivisions(m_horizonOffset - heightModifier));
 		glEnd();
 	}
 	
@@ -79,8 +79,8 @@ float Raycaster::NormalizeToDivisions(const float value)
 	{
 		return -1.0f;
 	}
-	float step = 2.0f / (float)m_rows;
-	float mult = (int)((value + 1.0f) / step);
+	float step = 2.0f / static_cast<float>(m_rows);
+	float mult = static_cast<int>((value + 1.0f) / step);
 	return (mult * step) - 1.0f;
 }
 RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float maxDistance)
@@ -90,7 +90,7 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	Vector2D directionVec = RotToVec(rotation);
 	result.rayDirection = directionVec;
 	
-	if (g_map[(int)initialPosition.x][(int)initialPosition.y] == 1)
+	if (g_map[static_cast<int>(initialPosition.x)][static_cast<int>(initialPosition.y)] == 1)
 	{
 		result.bHit = true;
 		result.hitPosition = initialPosition;
@@ -102,17 +102,15 @@ RayHitResult Raycaster::CastRay(Vector2D initialPosition, float rotation, float 
 	Vector2D xJump = (directionVec / directionVec.x);
 	Vector2D yJump = (directionVec / directionVec.y);
 
-	
-
 	for (float step = 0.0f; step < maxDistance; )
 	{
-		if (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))] != 0)
+		if (g_map[static_cast<int>(initialPosition.x + (directionVec.x * (step)))][static_cast<int>(initialPosition.y + (directionVec.y * (step)))] != 0)
 		{
 			result.bHit = true;
 			result.distance = step;
 			result.hitPosition = Vector2D(initialPosition.x + (directionVec.x * step), initialPosition.y + (directionVec.y * step));
 
-			switch (g_map[(int)(initialPosition.x + (directionVec.x * (step)))][(int)(initialPosition.y + (directionVec.y * (step)))])
+			switch (g_map[static_cast<int>(initialPosition.x + (directionVec.x * (step)))][static_cast<int>(initialPosition.y + (directionVec.y * (step)))])
 			{
 			case 8:
 				result.rayColor = { 1,1,1 };

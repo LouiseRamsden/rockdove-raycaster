@@ -31,6 +31,8 @@ struct Vector2D
 	Vector2D operator/(float const& s1) { return Vector2D(this->x / s1, this->y / s1); }
 	Vector2D operator+(Vector2D const& v1) { return Vector2D(this->x + v1.x, this->y + v1.y); }
 	Vector2D operator-(Vector2D const& v1) { return Vector2D(this->x - v1.x, this->y - v1.y); }
+	void operator*=(float const& s1) { this->x = this->x * s1; this->y = this->y * s1; }
+	void operator/=(float const& s1) { this->x = this->x / s1; this->y = this->y / s1; }
 };
 
 inline float DegToRad(float degrees)
